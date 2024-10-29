@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'perfil.dart';
+import 'tela1.dart';
+
+
 
 void main() {
   runApp(Beleza());
@@ -12,8 +16,8 @@ class Beleza extends StatefulWidget {
 class _MyAppState extends State<Beleza> {
   int _selectedIndex = 0;
 
-  static List<Widget> _widgetOptions = <Widget>[
-    HomePage(),
+  static final List<Widget> _widgetOptions = <Widget>[
+    Beleza1(),
     ProfilePage(),
     NotificationsPage(),
   ];
@@ -48,7 +52,8 @@ class _MyAppState extends State<Beleza> {
           ],
           currentIndex: _selectedIndex,
           selectedItemColor: Color.fromARGB(255, 221, 156, 232),
-          unselectedItemColor: Colors.grey,
+          unselectedItemColor: const Color.fromARGB(255, 221, 156, 232),
+          backgroundColor: Colors.grey[800], 
           onTap: _onItemTapped,
         ),
       ),
@@ -56,7 +61,7 @@ class _MyAppState extends State<Beleza> {
   }
 }
 
-class HomePage extends StatelessWidget {
+class Beleza1 extends StatelessWidget {
   final List<String> itemNames = [
     'Cabelos',
     'Beleza',
@@ -441,16 +446,31 @@ class ReconstrucaoDetailPage extends StatelessWidget {
   }
 }
 
-class ProfilePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text('Página de Perfil'));
-  }
-}
+
 
 class NotificationsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text('Página de Notificações'));
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Notificações'),
+        backgroundColor: Color.fromARGB(255, 221, 156, 232),
+      ),
+      body: ListView(
+        padding: EdgeInsets.all(20),
+        children: [
+          ListTile(
+            leading: Icon(Icons.notifications, color: Color.fromARGB(255, 210, 85, 195)),
+            title: Text("Lembrete 1"),
+            subtitle: Text("Você tem um compromisso às 10:00 AM."),
+          ),
+          ListTile(
+            leading: Icon(Icons.notifications, color: Color.fromARGB(255, 210, 85, 195)),
+            title: Text("Lembrete 2"),
+            subtitle: Text("Horário de tomar remédio às 2:00 PM."),
+          ),
+        ],
+      ),
+    );
   }
 }
