@@ -1,7 +1,13 @@
+import 'package:bemestaremmaos/periodomenstrual.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'perfil.dart';
-
+import 'cabelos.dart';  // Supondo que esta é uma página já existente
+import 'beleza.dart';   // Substitua pelos imports das suas páginas
+import 'periodomenstrual.dart';
+import 'saude.dart';
+import 'unhas.dart';
+import 'compromissos.dart';
 
 void main() {
   runApp(Tela1());
@@ -51,7 +57,7 @@ class _Tela1State extends State<Tela1> {
           ],
           selectedItemColor: Color.fromARGB(255, 221, 156, 232),
           unselectedItemColor: const Color.fromARGB(255, 221, 156, 232),
-          backgroundColor: Colors.grey[800], 
+          backgroundColor: Colors.grey[800],
           onTap: _onItemTapped,
         ),
       ),
@@ -89,30 +95,48 @@ class HomePage extends StatelessWidget {
                 spacing: 20.0,
                 runSpacing: 20.0,
                 children: List.generate(itemNames.length, (index) {
-                  return Column(
-                    children: [
-                      Container(
-                        width: 100,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Color.fromARGB(255, 210, 85, 195),
-                        ),
-                        child: ClipOval(
-                          child: Image.asset(
-                            'assets/images/item$index.jpg', 
-                            fit: BoxFit.cover,
+                  return GestureDetector(
+                    onTap: () {
+                      
+                      if (index == 0) {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Cabelos()));
+                      } else if (index == 1) {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Beleza()));
+                      } else if (index == 2) {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Periodomenstrual()));
+                      } else if (index == 3) {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Saude()));
+                      } else if (index == 4) {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Unhas()));
+                      } else if (index == 5) {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Compromissos()));
+                      }
+                    },
+                    child: Column(
+                      children: [
+                        Container(
+                          width: 100,
+                          height: 100,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Color.fromARGB(255, 210, 85, 195),
+                          ),
+                          child: ClipOval(
+                            child: Image.asset(
+                              'assets/images/item$index.jpg',
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 5),
-                      Text(
-                        itemNames[index],
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 221, 156, 232),
+                        const SizedBox(height: 5),
+                        Text(
+                          itemNames[index],
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 221, 156, 232),
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   );
                 }),
               ),
@@ -122,9 +146,7 @@ class HomePage extends StatelessWidget {
                 lastDay: DateTime.utc(2030, 12, 31),
                 focusedDay: DateTime.now(),
                 calendarFormat: CalendarFormat.month,
-                onDaySelected: (selectedDay, focusedDay) {
-                 
-                },
+                onDaySelected: (selectedDay, focusedDay) {},
               ),
             ],
           ),

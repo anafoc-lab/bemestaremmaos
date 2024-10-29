@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'perfil.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,7 +14,7 @@ class _MyAppState extends State<MyApp> {
   int _selectedIndex = 0;
 
   static List<Widget> _widgetOptions = <Widget>[
-    HomePage(),
+    Saude(),
     ProfilePage(),
     NotificationsPage(),
   ];
@@ -48,7 +49,8 @@ class _MyAppState extends State<MyApp> {
           ],
           currentIndex: _selectedIndex,
           selectedItemColor: Color.fromARGB(255, 221, 156, 232),
-          unselectedItemColor: Colors.grey,
+          unselectedItemColor: const Color.fromARGB(255, 221, 156, 232),
+          backgroundColor: Colors.grey[800],
           onTap: _onItemTapped,
         ),
       ),
@@ -56,7 +58,7 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-class HomePage extends StatelessWidget {
+class Saude extends StatelessWidget {
   final List<String> itemNames = [
     'Cabelos',
     'Beleza',
@@ -383,12 +385,7 @@ class ReconstrucaoDetailPage extends StatelessWidget {
   }
 }
 
-class ProfilePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text('Página de Perfil'));
-  }
-}
+
 
 class NotificationsPage extends StatelessWidget {
   @override

@@ -10,8 +10,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Bem estar em Mãos - Login',
-      home: LoginPage(),
+      title: 'Bem Estar em Mãos',
+      initialRoute: '/', // Define a página principal como LoginPage
+      routes: {
+        '/': (context) => LoginPage(), // Login como página principal
+        '/cadastro': (context) => Cadastro(),
+        '/home': (context) => Tela1(),
+      },
+      theme: ThemeData(
+        primaryColor: const Color.fromARGB(255, 210, 85, 195),
+      ),
     );
   }
 }
@@ -26,42 +34,37 @@ class _LoginPageState extends State<LoginPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  void _login() {
-    const correctEmail = 'appweb2024@puc.com.br';
-    const correctPassword = '12345';
+void _navigateToCadastro() {
+  Navigator.pushNamed(context, '/cadastro');
+}
 
-    if (_emailController.text == correctEmail && _passwordController.text == correctPassword) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => Tela1()), 
-      );
-    } else {
-      showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: Text('Erro'),
-            content: Text('Login incorreto'),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text('OK'),
-              ),
-            ],
-          );
-        },
-      );
-    }
-  }
+void _login() {
+  const correctEmail = 'appweb2024@puc.com.br';
+  const correctPassword = '12345';
 
-  void _navigateToCadastro() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => Cadastro()),
+  if (_emailController.text == correctEmail && _passwordController.text == correctPassword) {
+    Navigator.pushReplacementNamed(context, '/home'); // substitui a tela de login
+  } else {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Erro'),
+          content: Text('Login incorreto'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('OK'),
+            ),
+          ],
+        );
+      },
     );
   }
+}
+
 
   @override
   Widget build(BuildContext context) {

@@ -118,17 +118,19 @@ class _CadastroState extends State<Cadastro> {
                 const SizedBox(height: 20),
                 Center(
                   child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 210, 85, 195),
-                      foregroundColor: Colors.white,
-                      minimumSize: Size(150, 40),
-                    ),
-                    child: const Text(
-                      'Cadastrar',
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  ),
+  onPressed: () {
+    Navigator.pop(context); // Retorna à página de login
+  },
+  style: ElevatedButton.styleFrom(
+    backgroundColor: const Color.fromARGB(255, 210, 85, 195),
+    foregroundColor: Colors.white,
+    minimumSize: Size(150, 40),
+  ),
+  child: const Text(
+    'Cadastrar',
+    style: TextStyle(fontSize: 16),
+  ),
+)
                 ),
               ],
             ),

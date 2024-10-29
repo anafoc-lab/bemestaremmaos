@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'perfil.dart';
 void main() {
   runApp(MyApp());
 }
@@ -13,7 +13,7 @@ class _MyAppState extends State<MyApp> {
   int _selectedIndex = 0;
 
   static List<Widget> _widgetOptions = <Widget>[
-    HomePage(),
+    Compromissos(),
     ProfilePage(),
     NotificationsPage(),
   ];
@@ -48,7 +48,8 @@ class _MyAppState extends State<MyApp> {
           ],
           currentIndex: _selectedIndex,
           selectedItemColor: Color.fromARGB(255, 221, 156, 232),
-          unselectedItemColor: Colors.grey,
+          unselectedItemColor: const Color.fromARGB(255, 221, 156, 232),
+          backgroundColor: Colors.grey[800],
           onTap: _onItemTapped,
         ),
       ),
@@ -56,7 +57,7 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-class HomePage extends StatelessWidget {
+class Compromissos extends StatelessWidget {
   final List<String> itemNames = [
     'Cabelos',
     'Beleza',
@@ -149,17 +150,7 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class ProfilePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        'Perfil',
-        style: TextStyle(fontSize: 24, color: Color.fromARGB(255, 221, 156, 232)),
-      ),
-    );
-  }
-}
+
 
 class NotificationsPage extends StatelessWidget {
   @override

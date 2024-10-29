@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'perfil.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,7 +14,7 @@ class _MyAppState extends State<MyApp> {
   int _selectedIndex = 0;
 
   static List<Widget> _widgetOptions = <Widget>[
-    HomePage(),
+    Cabelos(),
     ProfilePage(),
     NotificationsPage(),
   ];
@@ -56,7 +57,7 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-class HomePage extends StatelessWidget {
+class Cabelos extends StatelessWidget {
   final List<String> itemNames = [
     'Cabelos',
     'Beleza',
@@ -369,12 +370,7 @@ class ReconstrucaoDetailPage extends StatelessWidget {
   }
 }
 
-class ProfilePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text('Página de Perfil'));
-  }
-}
+
 
 class NotificationsPage extends StatelessWidget {
   @override
