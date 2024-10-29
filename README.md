@@ -1,16 +1,14 @@
-# bemestaremmaos
+# Bem estar em Mãos
 
-A new Flutter project.
 
-## Getting Started
+Seja bem-vinda ao aplicativo que vai te ajudar a organizar sua rotina de cuidados com a saúde e beleza. Com ele, você terá uma ferramenta personalizada para te lembrar de tudo o que precisa para se sentir bem e radiante.​
+Um projeto em Flutter.
 
-This project is a starting point for a Flutter application.
+## Integrantes
 
-A few resources to get you started if this is your first Flutter project:
+Ana Clara Lima Marçal; ​
+Ana Flavia de Oliveira Costa; ​
+Sabrina Luiza Mendes da Silva.​
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+##Ideia do Projeto
+O aplicativo nasceu da necessidade de simplificar a vida da mulher moderna. Ele oferece um espaço centralizado para organizar seus cuidados com a saúde e beleza, criando uma rotina personalizada de acordo com suas necessidades.​
