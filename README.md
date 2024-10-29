@@ -7,8 +7,10 @@ Um projeto em Flutter.
 ## Integrantes
 
 Ana Clara Lima Marçal; ​
+
 Ana Flavia de Oliveira Costa; ​
+
 Sabrina Luiza Mendes da Silva.​
 
-##Ideia do Projeto
+## Ideia do Projeto
 O aplicativo nasceu da necessidade de simplificar a vida da mulher moderna. Ele oferece um espaço centralizado para organizar seus cuidados com a saúde e beleza, criando uma rotina personalizada de acordo com suas necessidades.​
