@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'perfil.dart';
+
 
 void main() {
-  runApp(MyApp());
+  runApp(Tela1());
 }
 
-class MyApp extends StatefulWidget {
+class Tela1 extends StatefulWidget {
   @override
-  _MyAppState createState() => _MyAppState();
+  _Tela1State createState() => _Tela1State();
 }
 
-class _MyAppState extends State<MyApp> {
+class _Tela1State extends State<Tela1> {
   int _selectedIndex = 0;
 
   static List<Widget> _widgetOptions = <Widget>[
@@ -47,9 +49,9 @@ class _MyAppState extends State<MyApp> {
               label: 'Notificações',
             ),
           ],
-          currentIndex: _selectedIndex,
           selectedItemColor: Color.fromARGB(255, 221, 156, 232),
-          unselectedItemColor: Colors.grey,
+          unselectedItemColor: const Color.fromARGB(255, 221, 156, 232),
+          backgroundColor: Colors.grey[800], 
           onTap: _onItemTapped,
         ),
       ),
@@ -121,24 +123,12 @@ class HomePage extends StatelessWidget {
                 focusedDay: DateTime.now(),
                 calendarFormat: CalendarFormat.month,
                 onDaySelected: (selectedDay, focusedDay) {
-                  
+                 
                 },
               ),
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class ProfilePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        'Perfil',
-        style: TextStyle(fontSize: 24, color: Color.fromARGB(255, 221, 156, 232)),
       ),
     );
   }

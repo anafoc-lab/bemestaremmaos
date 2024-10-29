@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 void main() {
   runApp(ProfilePage());
 }
@@ -31,7 +32,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     height: 100,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage('assets/images/avatar.jpg'), // Sua imagem de perfil
+                        image: AssetImage('assets/images/avatar.jpg'), 
                         fit: BoxFit.cover,
                       ),
                       borderRadius: BorderRadius.circular(8),
@@ -130,20 +131,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: 'Perfil',
-            ),
-          ],
-          selectedItemColor: Color.fromARGB(255, 221, 156, 232),
-          unselectedItemColor: Colors.grey,
-        ),
+       
       ),
     );
   }

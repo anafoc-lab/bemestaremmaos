@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
+import 'login.dart';
+import 'tela1.dart';
 
 void main() {
-  runApp(HomePage());
+  runApp(Cadastro());
 }
 
-class HomePage extends StatefulWidget {
+class Cadastro extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _CadastroState createState() => _CadastroState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _CadastroState extends State<Cadastro> {
+
   bool _showPassword = false;
   bool _showConfirmPassword = false;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Bem estar em Mãos - Cadastro',
+      title: 'Bem Estar em Mãos - Cadastro',
       home: Scaffold(
         backgroundColor: const Color.fromRGBO(255, 241, 241, 1),
         body: Center(
@@ -143,7 +146,8 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
           selectedItemColor: Color.fromARGB(255, 221, 156, 232),
-          unselectedItemColor: Colors.grey,
+          unselectedItemColor: const Color.fromARGB(255, 221, 156, 232),
+          backgroundColor: Colors.grey[800],
         ),
       ),
     );

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(Beleza());
 }
 
-class MyApp extends StatefulWidget {
+class Beleza extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _MyAppState extends State<Beleza> {
   int _selectedIndex = 0;
 
   static List<Widget> _widgetOptions = <Widget>[
