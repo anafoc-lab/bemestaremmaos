@@ -1,9 +1,8 @@
-import 'package:bemestaremmaos/periodomenstrual.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'perfil.dart';
-import 'cabelos.dart';  // Supondo que esta é uma página já existente
-import 'beleza.dart';   // Substitua pelos imports das suas páginas
+import 'cabelos.dart';
+import 'beleza.dart';
 import 'periodomenstrual.dart';
 import 'saude.dart';
 import 'unhas.dart';
@@ -23,7 +22,7 @@ class _Tela1State extends State<Tela1> {
 
   static List<Widget> _widgetOptions = <Widget>[
     HomePage(),
-    ProfilePage(),
+     ProfilePage(),
     NotificationsPage(),
   ];
 
@@ -36,10 +35,10 @@ class _Tela1State extends State<Tela1> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Bem estar em Mãos',
+      title: 'Bem Estar em Mãos',
       home: Scaffold(
         backgroundColor: const Color.fromRGBO(255, 241, 241, 1),
-        body: _widgetOptions.elementAt(_selectedIndex),
+        body: _widgetOptions[_selectedIndex],
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
@@ -55,6 +54,7 @@ class _Tela1State extends State<Tela1> {
               label: 'Notificações',
             ),
           ],
+          currentIndex: _selectedIndex,
           selectedItemColor: Color.fromARGB(255, 221, 156, 232),
           unselectedItemColor: const Color.fromARGB(255, 221, 156, 232),
           backgroundColor: Colors.grey[800],
@@ -97,20 +97,27 @@ class HomePage extends StatelessWidget {
                 children: List.generate(itemNames.length, (index) {
                   return GestureDetector(
                     onTap: () {
-                      
-                      if (index == 0) {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => Cabelos()));
-                      } else if (index == 1) {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => Beleza()));
-                      } else if (index == 2) {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => Periodomenstrual()));
-                      } else if (index == 3) {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => Saude()));
-                      } else if (index == 4) {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => Unhas()));
-                      } else if (index == 5) {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => Compromissos()));
-                      }
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) {
+                          switch (index) {
+                            case 0:
+                              return Cabelos();
+                            case 1:
+                              return Beleza();
+                            case 2:
+                              return Periodomenstrual();
+                            case 3:
+                              return Saude();
+                            case 4:
+                              return Unhas();
+                            case 5:
+                              return Compromissos();
+                            default:
+                              return HomePage();
+                          }
+                        }),
+                      );
                     },
                     child: Column(
                       children: [

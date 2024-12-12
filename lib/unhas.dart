@@ -15,9 +15,10 @@ class _MyAppState extends State<MyApp> {
   int _selectedIndex = 0;
 
   static List<Widget> _widgetOptions = <Widget>[
-    Tela1(),
+    Unhas(),
+    HomePage(),
     ProfilePage(),
-    NotificationsPage(),
+    //NotificationsPage(),
   ];
 
   void _onItemTapped(int index) {

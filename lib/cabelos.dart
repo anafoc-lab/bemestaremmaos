@@ -1,3 +1,8 @@
+import 'package:bemestaremmaos/beleza.dart';
+import 'package:bemestaremmaos/compromissos.dart';
+import 'package:bemestaremmaos/periodomenstrual.dart';
+import 'package:bemestaremmaos/saude.dart';
+import 'package:bemestaremmaos/unhas.dart';
 import 'package:flutter/material.dart';
 import 'perfil.dart';
 
@@ -98,7 +103,46 @@ class Cabelos extends StatelessWidget {
                 children: List.generate(itemNames.length, (index) {
                   return GestureDetector(
                     onTap: () {
-                     
+                     switch (itemNames[index]) {
+                        case 'Cabelos':
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Cabelos()),
+                          );
+                          break;
+                        case 'Beleza':
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Beleza()),
+                          );
+                          break;
+                        case 'Período Menstrual':
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Periodomenstrual()),
+                          );
+                          break;
+                        case 'Saúde':
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Saude()),
+                          );
+                          break;
+                        case 'Unhas':
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Unhas()),
+                          );
+                          break;
+                        case 'Compromissos':
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Compromissos()),
+                          );
+                          break;
+                        default:
+                          break;
+                      }
                     },
                     child: Column(
                       children: [

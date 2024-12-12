@@ -17,7 +17,7 @@ class _MyAppState extends State<Beleza> {
   int _selectedIndex = 0;
 
   static final List<Widget> _widgetOptions = <Widget>[
-    Tela1(),
+    Beleza(),
     ProfilePage(),
     NotificationsPage(),
   ];

@@ -8,8 +8,12 @@ environment:
   sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
+  
   flutter:
-    sdk: flutter
+   sdk: flutter
+  sqflite: ^2.2.7
+  sqflite_common_ffi: ^2.2.7
+  path: ^1.8.3
 
   # Pacote de calendário que você está usando
   table_calendar: ^3.0.8
@@ -52,3 +56,4 @@ flutter:
     - assets/images/fases.jpg 
     - assets/images/hormoniosdociclo.jpg
     - assets/images/avatar.jpg
+    - assets/images/1.png

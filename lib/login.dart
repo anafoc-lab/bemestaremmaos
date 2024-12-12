@@ -11,9 +11,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Bem Estar em Mãos',
-      initialRoute: '/', // Define a página principal como LoginPage
+      initialRoute: '/', 
       routes: {
-        '/': (context) => LoginPage(), // Login como página principal
+        '/': (context) => LoginPage(), 
         '/cadastro': (context) => Cadastro(),
         '/home': (context) => Tela1(),
       },
