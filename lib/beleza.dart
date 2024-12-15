@@ -5,7 +5,6 @@ import 'unhas.dart';
 import 'package:flutter/material.dart';
 import 'perfil.dart';
 import 'cabelos.dart';
-import 'beleza.dart';
 
 
 void main() {
@@ -13,6 +12,8 @@ void main() {
 }
 
 class Beleza extends StatefulWidget {
+  const Beleza({super.key});
+
   @override
   _BelezaState createState() => _BelezaState();
 }
@@ -22,7 +23,7 @@ class _BelezaState extends State<Beleza> {
 
   static final List<Widget> _widgetOptions = <Widget>[
     Beleza1(),
-    ProfilePage(),
+    ProfilePage(email: '',),
     NotificationsPage(),
   ];
 
@@ -159,6 +160,8 @@ class Beleza1 extends StatelessWidget {
     'Compromissos',
   ];
 
+  Beleza1({super.key});
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -167,7 +170,7 @@ class Beleza1 extends StatelessWidget {
           padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
-              Container(
+              SizedBox(
                 height: 200,
                 child: Image.asset(
                   'assets/images/logo.png',
@@ -241,7 +244,7 @@ class Beleza1 extends StatelessWidget {
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(10),
-                        child: Container(
+                        child: SizedBox(
                           width: 100,
                           height: 120,
                           child: Image.asset(
@@ -278,7 +281,7 @@ class Beleza1 extends StatelessWidget {
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(10),
-                        child: Container(
+                        child: SizedBox(
                           width: 100,
                           height: 120,
                           child: Image.asset(
@@ -308,6 +311,8 @@ class Beleza1 extends StatelessWidget {
 }
 
 class CurvaturaDetailPage extends StatelessWidget {
+  const CurvaturaDetailPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -345,7 +350,7 @@ class CurvaturaDetailPage extends StatelessWidget {
 class DetailPage extends StatelessWidget {
   final String title;
 
-  DetailPage({required this.title});
+  const DetailPage({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -375,6 +380,8 @@ class DetailPage extends StatelessWidget {
 }
 
 class ReconstrucaoDetailPage extends StatelessWidget {
+  const ReconstrucaoDetailPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -409,6 +416,8 @@ class ReconstrucaoDetailPage extends StatelessWidget {
   }
 }
 class NotificationsPage extends StatelessWidget {
+  const NotificationsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

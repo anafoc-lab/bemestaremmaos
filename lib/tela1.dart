@@ -10,12 +10,15 @@ import 'beleza.dart';
 
 void main() {
   runApp(MaterialApp(
+    
     title: 'Bem Estar em Mãos',
     home: Tela1(),
   ));
 }
 
 class Tela1 extends StatefulWidget {
+  const Tela1({super.key});
+
   @override
   _Tela1State createState() => _Tela1State();
 }
@@ -23,9 +26,9 @@ class Tela1 extends StatefulWidget {
 class _Tela1State extends State<Tela1> {
   int _selectedIndex = 0;
 
-  static List<Widget> _widgetOptions = <Widget>[
+  static final List<Widget> _widgetOptions = <Widget>[
     HomePage(),
-   ProfilePage(),
+   ProfilePage(email: 'anaflavia@gmail.com',),
     NotificationsPage(),
   ];
 
@@ -160,6 +163,8 @@ class HomePage extends StatelessWidget {
     'Compromissos',
   ];
 
+HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -168,7 +173,7 @@ class HomePage extends StatelessWidget {
           padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
-              Container(
+              SizedBox(
                 height: 200,
                 child: Image.asset(
                   'assets/images/logo.png',
@@ -193,6 +198,8 @@ class HomePage extends StatelessWidget {
 }
 
 class NotificationsPage extends StatelessWidget {
+  const NotificationsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

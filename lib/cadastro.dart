@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'database_helper.dart';
 
 class Cadastro extends StatefulWidget {
+  const Cadastro({super.key});
+
   @override
   _CadastroState createState() => _CadastroState();
 }
@@ -22,8 +24,18 @@ class _CadastroState extends State<Cadastro> {
     final password = _passwordController.text.trim();
     final confirmPassword = _confirmPasswordController.text.trim();
 
-    if (name.isEmpty || birthdate.isEmpty || email.isEmpty || password.isEmpty) {
+    if (name.isEmpty || birthdate.isEmpty || email.isEmpty || password.isEmpty || confirmPassword.isEmpty) {
       _showDialog('Erro', 'Preencha todos os campos.');
+      return;
+    }
+
+    if (!RegExp(r"^[^@\s]+@[^@\s]+\.[^@\s]+$").hasMatch(email)) {
+      _showDialog('Erro', 'Digite um e-mail válido.');
+      return;
+    }
+
+    if (password.length < 8) {
+      _showDialog('Erro', 'A senha deve ter pelo menos 8 caracteres.');
       return;
     }
 
@@ -32,11 +44,14 @@ class _CadastroState extends State<Cadastro> {
       return;
     }
 
+    final dbHelper = DatabaseHelper();
+    final hashedPassword = dbHelper.hashPassword(password);
+
     final user = {
       'name': name,
       'birthdate': birthdate,
       'email': email,
-      'password': password,
+      'password': hashedPassword,
     };
 
     try {
@@ -45,7 +60,11 @@ class _CadastroState extends State<Cadastro> {
       _showDialog('Sucesso', 'Usuário cadastrado com sucesso!');
       _clearFields();
     } catch (e) {
-      _showDialog('Erro', 'Não foi possível cadastrar o usuário: $e');
+      if (e.toString().contains('UNIQUE constraint failed')) {
+        _showDialog('Erro', 'E-mail já cadastrado.');
+      } else {
+        _showDialog('Erro', 'Não foi possível cadastrar o usuário: $e');
+      }
     }
   }
 
@@ -91,10 +110,7 @@ class _CadastroState extends State<Cadastro> {
                   labelText: "Nome",
                   prefixIcon: Icon(Icons.person, color: Color.fromARGB(255, 210, 85, 195)),
                 ),
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Color.fromARGB(255, 221, 156, 232),
-                ),
+                style: TextStyle(fontSize: 20, color: Color.fromARGB(255, 221, 156, 232)),
                 maxLength: 30,
               ),
               const SizedBox(height: 20),
@@ -105,10 +121,7 @@ class _CadastroState extends State<Cadastro> {
                   labelText: "Data de Nascimento",
                   prefixIcon: Icon(Icons.calendar_today, color: Color.fromARGB(255, 210, 85, 195)),
                 ),
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Color.fromARGB(255, 221, 156, 232),
-                ),
+                style: TextStyle(fontSize: 20, color: Color.fromARGB(255, 221, 156, 232)),
               ),
               const SizedBox(height: 20),
               TextField(
@@ -118,10 +131,7 @@ class _CadastroState extends State<Cadastro> {
                   labelText: "E-mail",
                   prefixIcon: Icon(Icons.email, color: Color.fromARGB(255, 210, 85, 195)),
                 ),
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Color.fromARGB(255, 221, 156, 232),
-                ),
+                style: TextStyle(fontSize: 20, color: Color.fromARGB(255, 221, 156, 232)),
               ),
               const SizedBox(height: 20),
               TextField(
@@ -142,10 +152,7 @@ class _CadastroState extends State<Cadastro> {
                     },
                   ),
                 ),
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Color.fromARGB(255, 221, 156, 232),
-                ),
+                style: TextStyle(fontSize: 20, color: Color.fromARGB(255, 221, 156, 232)),
                 obscureText: !_showPassword,
                 maxLength: 8,
               ),
@@ -168,10 +175,7 @@ class _CadastroState extends State<Cadastro> {
                     },
                   ),
                 ),
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Color.fromARGB(255, 221, 156, 232),
-                ),
+                style: TextStyle(fontSize: 20, color: Color.fromARGB(255, 221, 156, 232)),
                 obscureText: !_showConfirmPassword,
                 maxLength: 8,
               ),
@@ -187,6 +191,21 @@ class _CadastroState extends State<Cadastro> {
                   child: const Text(
                     'Cadastrar',
                     style: TextStyle(fontSize: 16),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+              Center(
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/');
+                  },
+                  child: const Text(
+                    'Fazer login',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Color.fromARGB(255, 210, 85, 195),
+                    ),
                   ),
                 ),
               ),

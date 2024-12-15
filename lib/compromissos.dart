@@ -11,6 +11,8 @@ void main() {
 }
 
 class Compromisso extends StatefulWidget {
+  const Compromisso({super.key});
+
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -18,9 +20,9 @@ class Compromisso extends StatefulWidget {
 class _MyAppState extends State<Compromisso> {
   int _selectedIndex = 0;
 
-  static List<Widget> _widgetOptions = <Widget>[
+  static final List<Widget> _widgetOptions = <Widget>[
     Compromissos(),
-    ProfilePage(),
+    ProfilePage(email: '',),
     NotificationsPage(),
   ];
 
@@ -163,6 +165,8 @@ class Compromissos extends StatelessWidget {
     {"title": "Ginástica", "time": "5:30 PM"},
   ];
 
+Compromissos({super.key});
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -171,7 +175,7 @@ class Compromissos extends StatelessWidget {
           padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
-              Container(
+              SizedBox(
                 height: 200,
                 child: Image.asset(
                   'assets/images/logo.png',
@@ -213,6 +217,8 @@ class Compromissos extends StatelessWidget {
 
 
 class NotificationsPage extends StatelessWidget {
+  const NotificationsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

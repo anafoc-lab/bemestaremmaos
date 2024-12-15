@@ -12,6 +12,8 @@ void main() {
 }
 
 class saudes extends StatefulWidget {
+  const saudes({super.key});
+
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -19,9 +21,9 @@ class saudes extends StatefulWidget {
 class _MyAppState extends State<saudes> {
   int _selectedIndex = 0;
 
-  static List<Widget> _widgetOptions = <Widget>[
+  static final List<Widget> _widgetOptions = <Widget>[
     Saude(),
-    ProfilePage(),
+    ProfilePage(email: '',),
     NotificationsPage(),
   ];
 
@@ -158,6 +160,8 @@ class Saude extends StatelessWidget {
     'Compromissos',
   ];
 
+ Saude({super.key});
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -166,7 +170,7 @@ class Saude extends StatelessWidget {
           padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
-              Container(
+              SizedBox(
                 height: 200,
                 child: Image.asset(
                   'assets/images/logo.png',
@@ -242,7 +246,7 @@ class Saude extends StatelessWidget {
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(10),
-                        child: Container(
+                        child: SizedBox(
                           width: 100,
                           height: 120,
                           child: Image.asset(
@@ -279,7 +283,7 @@ class Saude extends StatelessWidget {
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(10),
-                        child: Container(
+                        child: SizedBox(
                           width: 100,
                           height: 120,
                           child: Image.asset(
@@ -309,6 +313,8 @@ class Saude extends StatelessWidget {
 }
 
 class CurvaturaDetailPage extends StatelessWidget {
+  const CurvaturaDetailPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -346,7 +352,7 @@ class CurvaturaDetailPage extends StatelessWidget {
 class DetailPage extends StatelessWidget {
   final String title;
 
-  DetailPage({required this.title});
+  const DetailPage({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -394,6 +400,8 @@ class DetailPage extends StatelessWidget {
 }
 
 class ReconstrucaoDetailPage extends StatelessWidget {
+  const ReconstrucaoDetailPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -444,6 +452,8 @@ class ReconstrucaoDetailPage extends StatelessWidget {
 
 
 class NotificationsPage extends StatelessWidget {
+  const NotificationsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

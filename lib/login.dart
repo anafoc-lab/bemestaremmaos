@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
-import 'tela1.dart'; 
-import 'cadastro.dart'; 
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+import 'database_helper.dart';
+import 'tela1.dart';
+import 'cadastro.dart';
 
 void main() {
+  sqfliteFfiInit();
+  databaseFactory = databaseFactoryFfi;
+
   runApp(MyApp());
 }
 
@@ -11,9 +16,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Bem Estar em Mãos',
-      initialRoute: '/', 
+      initialRoute: '/',
       routes: {
-        '/': (context) => LoginPage(), 
+        '/': (context) => LoginPage(),
         '/cadastro': (context) => Cadastro(),
         '/home': (context) => Tela1(),
       },
@@ -33,38 +38,55 @@ class _LoginPageState extends State<LoginPage> {
   bool _showPassword = false;
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final DatabaseHelper _dbHelper = DatabaseHelper();
 
-void _navigateToCadastro() {
-  Navigator.pushNamed(context, '/cadastro');
-}
+  Future<void> _login() async {
+    final email = _emailController.text.trim();
+    final password = _passwordController.text.trim();
 
-void _login() {
-  const correctEmail = 'appweb2024@puc.com.br';
-  const correctPassword = '12345';
+    if (email.isEmpty || password.isEmpty) {
+      _showDialog('Erro', 'Preencha todos os campos.');
+      return;
+    }
 
-  if (_emailController.text == correctEmail && _passwordController.text == correctPassword) {
-    Navigator.pushReplacementNamed(context, '/home'); // substitui a tela de login
-  } else {
+    try {
+      final user = await _dbHelper.getUserByEmail(email);
+
+      if (user != null) {
+        // Verifica a senha usando o mesmo hash usado no cadastro
+        final hashedPassword = _dbHelper.hashPassword(password);
+        if (hashedPassword == user['password']) {
+          Navigator.pushReplacementNamed(context, '/home');
+        } else {
+          _showDialog('Erro', 'Senha incorreta.');
+        }
+      } else {
+        _showDialog('Erro', 'Usuário não encontrado.');
+      }
+    } catch (e) {
+      _showDialog('Erro', 'Erro ao tentar fazer login: $e');
+    }
+  }
+
+  void _navigateToCadastro() {
+    Navigator.pushNamed(context, '/cadastro');
+  }
+
+  void _showDialog(String title, String message) {
     showDialog(
       context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text('Erro'),
-          content: Text('Login incorreto'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('OK'),
-            ),
-          ],
-        );
-      },
+      builder: (ctx) => AlertDialog(
+        title: Text(title),
+        content: Text(message),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(),
+            child: Text('OK'),
+          ),
+        ],
+      ),
     );
   }
-}
-
 
   @override
   Widget build(BuildContext context) {
@@ -127,7 +149,7 @@ void _login() {
               ),
               const SizedBox(height: 10),
               ElevatedButton(
-                onPressed: _navigateToCadastro, // Chama a função para cadastro
+                onPressed: _navigateToCadastro,
                 child: Text('Cadastrar-se'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color.fromARGB(255, 210, 85, 195),
