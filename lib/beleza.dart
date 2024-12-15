@@ -1,7 +1,11 @@
+import 'compromissos.dart';
+import 'periodomenstrual.dart';
+import 'saude.dart';
+import 'unhas.dart';
 import 'package:flutter/material.dart';
 import 'perfil.dart';
-import 'tela1.dart';
-
+import 'cabelos.dart';
+import 'beleza.dart';
 
 
 void main() {
@@ -10,14 +14,14 @@ void main() {
 
 class Beleza extends StatefulWidget {
   @override
-  _MyAppState createState() => _MyAppState();
+  _BelezaState createState() => _BelezaState();
 }
 
-class _MyAppState extends State<Beleza> {
+class _BelezaState extends State<Beleza> {
   int _selectedIndex = 0;
 
   static final List<Widget> _widgetOptions = <Widget>[
-    Beleza(),
+    Beleza1(),
     ProfilePage(),
     NotificationsPage(),
   ];
@@ -31,9 +35,93 @@ class _MyAppState extends State<Beleza> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Bem estar em Mãos - Beleza',
+      title: 'Bem Estar em Mãos - Beleza',
       home: Scaffold(
         backgroundColor: const Color.fromRGBO(255, 241, 241, 1),
+        appBar: AppBar(
+          title: Text('Bem Estar em Mãos'),
+          backgroundColor: Color.fromARGB(255, 221, 156, 232),
+        ),
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 221, 156, 232),
+                ),
+                child: Text(
+                  'Menu',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                  ),
+                ),
+              ),
+              ListTile(
+              title: Text('Cabelos'),
+              onTap: () {
+                Navigator.pop(context); 
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyApp()),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Beleza'),
+              onTap: () {
+                Navigator.pop(context); 
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Beleza()),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Período Menstrual'),
+              onTap: () {
+                Navigator.pop(context); 
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => periodomenstrual()),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Saúde'),
+              onTap: () {
+                Navigator.pop(context); 
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => saudes()),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Unhas'),
+              onTap: () {
+                Navigator.pop(context); 
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Unha()),
+                );
+              },
+            ),
+             ListTile(
+              title: Text('Compromisso'),
+              onTap: () {
+                Navigator.pop(context); 
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Compromisso()),
+                );
+              },
+            ),
+            
+          ],
+        ),
+      ),
         body: _widgetOptions.elementAt(_selectedIndex),
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
@@ -53,7 +141,7 @@ class _MyAppState extends State<Beleza> {
           currentIndex: _selectedIndex,
           selectedItemColor: Color.fromARGB(255, 221, 156, 232),
           unselectedItemColor: const Color.fromARGB(255, 221, 156, 232),
-          backgroundColor: Colors.grey[800], 
+          backgroundColor: Colors.grey[800],
           onTap: _onItemTapped,
         ),
       ),
@@ -94,42 +182,6 @@ class Beleza1 extends StatelessWidget {
                   color: Color.fromARGB(255, 221, 156, 232),
                   fontWeight: FontWeight.bold,
                 ),
-              ),
-              const SizedBox(height: 20),
-              Wrap(
-                spacing: 20.0,
-                runSpacing: 20.0,
-                children: List.generate(itemNames.length, (index) {
-                  return GestureDetector(
-                    onTap: () {
-                     
-                    },
-                    child: Column(
-                      children: [
-                        ClipOval(
-                          child: Container(
-                            width: 100,
-                            height: 100,
-                            decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 221, 156, 232),
-                            ),
-                            child: Image.asset(
-                              'assets/images/item$index.jpg',
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 5),
-                        Text(
-                          itemNames[index],
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 221, 156, 232),
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                }),
               ),
               const SizedBox(height: 20),
               GestureDetector(
@@ -308,69 +360,12 @@ class DetailPage extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: Text(
               'Aqui estão algumas dicas essenciais de skincare (cuidados com a pele) para manter a pele saudável, limpa e com aspecto rejuvenescido:\n\n\n'
-
-'1. Conheça Seu Tipo de Pele'
-'Antes de começar qualquer rotina de skincare, é fundamental saber se sua pele é oleosa, seca, mista ou sensível. Isso permitirá que você escolha os produtos certos e evite reações adversas.'
-
-'\n\n2. Limpeza Diária'
-'Manhã e Noite: Lave o rosto duas vezes por dia com um sabonete facial adequado ao seu tipo de pele. A limpeza remove impurezas, resíduos de maquiagem e o excesso de oleosidade.'
-'Evite Água Quente: Prefira água morna ou fria para evitar o ressecamento.'
-
-'\n\n3. Hidratação'
-'Todo Tipo de Pele Precisa de Hidratação: Mesmo peles oleosas precisam de um bom hidratante, de preferência com uma fórmula leve e não-comedogênica (que não obstrua os poros).'
-'Creme Hidratante: Escolha hidratantes ricos em ingredientes como ácido hialurônico, glicerina ou ceramidas para manter a pele hidratada e protegida.'
-
-'\n\n4. Proteção Solar Diária'
-'Filtro Solar: Use protetor solar com um FPS de pelo menos 30 todos os dias, mesmo em dias nublados ou dentro de casa. A exposição aos raios UV pode causar envelhecimento precoce, manchas escuras e câncer de pele.'
-'Reaplique: Reaplique o protetor a cada 2-3 horas se estiver exposta ao sol.'
-
-'\n\n5. Esfoliação'
-'Uma a Duas Vezes por Semana: A esfoliação ajuda a remover células mortas, desobstruir poros e melhorar a textura da pele. Use esfoliantes físicos (com grânulos) ou químicos (com ácidos como o ácido glicólico ou salicílico) com moderação.'
-'Atenção para Peles Sensíveis: Se sua pele for sensível, use esfoliantes mais suaves e evite esfoliar com muita frequência.'
-'\n\n6. Tratamentos Específicos'
-'Séruns: Inclua séruns com ingredientes ativos para tratar problemas específicos, como:'
-'Vitamina C: Antioxidante que ilumina e combate manchas escuras.'
-'Ácido Hialurônico: Potente hidratante que retém a umidade da pele.'
-'Niacinamida: Reduz a oleosidade e melhora a aparência dos poros.'
-'Retinol: Um poderoso anti-idade que estimula a renovação celular e combate rugas e linhas finas (melhor usado à noite).'
-'\n\n7. Cuidados com a Área dos Olhos'
-'Use Produtos Específicos: A pele ao redor dos olhos é mais fina e delicada, então use cremes específicos para essa área, contendo ingredientes como cafeína, ácido hialurônico ou vitamina C.'
-
-'\n\n8. Rotina Noturna'
-'Remova a Maquiagem: Nunca durma com maquiagem, pois pode obstruir os poros e causar acne.'
-'Séruns e Cremes Noturnos: À noite, aproveite para usar tratamentos mais intensos, como o retinol ou hidratantes mais pesados que reparam e regeneram a pele enquanto você dorme.'
-
-'\n\n9. Beber Água'
-'Manter-se hidratada é essencial para uma pele saudável. Beber água ajuda a manter a elasticidade e a umidade da pele de dentro para fora.'
-'\n\n10. Alimentação Balanceada'
-'Dieta Rica em Antioxidantes: Consuma alimentos ricos em antioxidantes (frutas, vegetais) que combatem os radicais livres e promovem uma pele mais saudável e jovem.'
-'Evite Excesso de Açúcar: O excesso de açúcar pode contribuir para o envelhecimento precoce e a piora da acne.'
-
-'\n\n11. Controle do Estresse e Qualidade do Sono'
-'Durma Bem: O sono reparador é essencial para a renovação celular da pele. Tente dormir de 7 a 9 horas por noite.'
-'Gerencie o Estresse: O estresse pode afetar a saúde da pele, causando acne, inflamações ou exacerbação de doenças como psoríase e rosácea.'
-
-'\n\n12. Consistência é a Chave'
-'Não adianta fazer skincare esporadicamente. Para ver resultados, é necessário ser consistente com sua rotina diária.'
-
-'\n\nRotina Básica de Skincare'
-'\n\nManhã:'
-
-'Limpeza'
-'Sérum (opcional)'
-'Hidratante'
-'Protetor Solar'
-
-'\n\nNoite:'
-'Limpeza'
-'Sérum de tratamento (ácido hialurônico, vitamina C, etc.)'
-'Creme noturno ou hidratante mais rico'
-
-'\n\nEssas dicas podem ser ajustadas conforme as necessidades específicas da sua pele, criando uma rotina eficaz para mantê-la saudável e bonita.'
-
-,
-              style: TextStyle(fontSize: 24),
-              textAlign: TextAlign.center,
+              '1. Conheça Seu Tipo de Pele\nAntes de começar qualquer rotina de skincare, é importante entender qual é o seu tipo de pele para escolher os produtos adequados.\n\n'
+              '2. Limpeza Diária\nLimpar o rosto ao menos duas vezes por dia é fundamental para remover sujeiras, oleosidade e células mortas. Escolha um sabonete adequado para seu tipo de pele.\n\n'
+              '3. Hidratação\nA hidratação ajuda a manter a pele macia, evitando ressecamento e danos.\n\n'
+              '4. Proteção Solar\nAplique protetor solar todos os dias para evitar danos solares e envelhecimento precoce.',
+              textAlign: TextAlign.left,
+              style: TextStyle(fontSize: 18, color: Colors.black87),
             ),
           ),
         ),
@@ -384,70 +379,35 @@ class ReconstrucaoDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Hidratação'),
+        title: Text('Hidratação e Reconstrução Capilar'),
         backgroundColor: Color.fromARGB(255, 221, 156, 232),
       ),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(
-              'A hidratação da pele é fundamental para mantê-la saudável, macia e com aspecto jovem. Quando a pele está devidamente hidratada, ela mantém a elasticidade, protege-se contra irritações e retarda o envelhecimento. Aqui estão algumas dicas e práticas eficazes para garantir uma boa hidratação da pele:\n\n\n'
-
-'\n\n1. Beber Água Suficiente'
-'Manter o corpo hidratado de dentro para fora é crucial. Beber cerca de 2 litros de água por dia ajuda a manter a pele saudável e a repor a umidade perdida ao longo do dia.'
-
-'\n\n2. Escolha de Hidratantes Adequados'
-'Peles Secas: Prefira hidratantes mais ricos e densos, como aqueles à base de manteigas (karité, cacau) e óleos (jojoba, amêndoas, coco).'
-'Peles Oleosas/Mistas: Use hidratantes leves, não-comedogênicos, como géis ou loções à base de água, para hidratar sem aumentar a oleosidade.'
-'Peles Sensíveis: Opte por hidratantes com ingredientes calmantes como aloe vera, camomila, e sem fragrâncias ou corantes.'
-
-'\n\n3. Uso de Ingredientes Hidratantes Potentes'
-'Ácido Hialurônico: Este ingrediente é capaz de reter até 1000 vezes o seu peso em água, sendo ideal para manter a pele hidratada e com aparência saudável.'
-'Glicerina e Ureia: São humectantes que atraem a umidade do ambiente para a pele, ajudando a mantê-la hidratada.'
-'Ceramidas: Ajudam a restaurar a barreira de proteção da pele, retendo a hidratação e prevenindo a perda de água.'
-
-'\n\n4. Aplicação Correta do Hidratante'
-'Imediatamente Após o Banho: A melhor hora para aplicar o hidratante é logo após o banho, quando a pele ainda está levemente úmida. Isso ajuda a selar a umidade na pele.'
-'Massageie Suavemente: Aplique o hidratante com movimentos circulares, massageando suavemente até que seja totalmente absorvido.'
-
-'\n\n5. Evitar Banhos Longos e Quentes'
-'Banhos quentes e prolongados podem remover a camada natural de oleosidade da pele, causando ressecamento. Prefira banhos rápidos com água morna.'
-
-'\n\n6. Esfoliação Regular'
-'A esfoliação remove as células mortas da pele, permitindo que o hidratante penetre melhor. No entanto, esfolie a pele apenas uma ou duas vezes por semana para evitar irritações. Peles sensíveis devem usar esfoliantes mais suaves.'
-
-'\n\n7. Umidificador de Ar'
-'Em ambientes secos ou durante o inverno, o ar tende a ser mais seco, o que pode ressecar a pele. Usar um umidificador em casa ajuda a manter a umidade no ar e evita que sua pele se desidrate.'
-
-'\n\n8. Uso de Óleos Corporais'
-'Óleo Corporal: Óleos vegetais como o óleo de amêndoas, óleo de coco ou óleo de semente de uva são excelentes para selar a hidratação. Eles podem ser aplicados diretamente sobre a pele após o banho ou misturados com o hidratante.'
-'Óleos Faciais: Para o rosto, use óleos específicos, como o óleo de rosa mosqueta (excelente para regeneração) ou óleo de jojoba (semelhante ao sebo natural da pele).'
-
-'\n\n9. Hidratantes Noturnos'
-'Durante a noite, a pele entra em um processo de reparação e regeneração. Usar cremes noturnos mais densos e ricos em nutrientes, como manteigas e ácidos graxos, ajuda a potencializar a hidratação.'
-
-'\n\n10. Proteção Solar'
-'O sol pode ressecar e danificar a pele, então é essencial usar protetor solar com fator de proteção (FPS) todos os dias, mesmo em ambientes fechados ou nublados. Existem protetores solares com efeito hidratante, ideais para manter a pele protegida e hidratada.'
-
-'\n\n11. Evitar Sabonetes Ressecantes'
-'Use sabonetes suaves, sem sulfatos e com pH neutro ou levemente ácido. Sabonetes agressivos podem remover a barreira natural de hidratação da pele, contribuindo para o ressecamento.'
-
-'\n\n12. Alimentação Balanceada'
-'Inclua alimentos ricos em ácidos graxos ômega-3 (peixes, sementes de chia, nozes) e antioxidantes (frutas vermelhas, vegetais de folhas verdes), que contribuem para uma pele mais hidratada e com melhor aspecto.'
-'\n\n\nManter esses cuidados e práticas ajuda a garantir que a pele fique bem hidratada, saudável e com uma aparência radiante ao longo do tempo.',
-              style: TextStyle(fontSize: 24),
-              textAlign: TextAlign.center,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(1.0),
+              child: Text(
+                'Hidratação e Reconstrução',
+                style: TextStyle(
+                  fontSize: 24,
+                  color: Color.fromARGB(255, 221, 156, 232),
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
             ),
-          ),
+            Image.asset(
+              'assets/images/hidratacaopele.jpg',
+              fit: BoxFit.cover,
+            ),
+          ],
         ),
       ),
     );
   }
 }
-
-
-
 class NotificationsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -474,3 +434,4 @@ class NotificationsPage extends StatelessWidget {
     );
   }
 }
+

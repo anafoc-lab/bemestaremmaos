@@ -1,15 +1,21 @@
+import 'compromissos.dart';
+import 'periodomenstrual.dart';
+import 'saude.dart';
+import 'unhas.dart';
 import 'package:flutter/material.dart';
 import 'perfil.dart';
+import 'cabelos.dart';
+import 'beleza.dart';
 void main() {
-  runApp(MyApp());
+  runApp(Compromisso());
 }
 
-class MyApp extends StatefulWidget {
+class Compromisso extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _MyAppState extends State<Compromisso> {
   int _selectedIndex = 0;
 
   static List<Widget> _widgetOptions = <Widget>[
@@ -24,37 +30,121 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Bem estar em Mãos - Agenda de Compromissos',
-      home: Scaffold(
-        backgroundColor: const Color.fromRGBO(255, 241, 241, 1),
-        body: _widgetOptions.elementAt(_selectedIndex),
-        bottomNavigationBar: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
+   @override
+Widget build(BuildContext context) {
+  return MaterialApp(
+    title: 'Bem estar em Mãos - Cabelos',
+    home: Scaffold(
+      backgroundColor: const Color.fromRGBO(255, 241, 241, 1),
+      appBar: AppBar(
+        title: Text('Bem Estar em Mãos'),
+        backgroundColor: Color.fromARGB(255, 221, 156, 232),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 221, 156, 232),
+              ),
+              child: Text(
+                'Menu',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: 'Perfil',
+            ListTile(
+              title: Text('Cabelos'),
+              onTap: () {
+                Navigator.pop(context); 
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyApp()),
+                );
+              },
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.notifications),
-              label: 'Notificações',
+            ListTile(
+              title: Text('Beleza'),
+              onTap: () {
+                Navigator.pop(context); 
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Beleza()),
+                );
+              },
             ),
+            ListTile(
+              title: Text('Período Menstrual'),
+              onTap: () {
+                Navigator.pop(context); 
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => periodomenstrual()),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Saúde'),
+              onTap: () {
+                Navigator.pop(context); 
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => saudes()),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Unhas'),
+              onTap: () {
+                Navigator.pop(context); 
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Unha()),
+                );
+              },
+            ),
+             ListTile(
+              title: Text('Compromisso'),
+              onTap: () {
+                Navigator.pop(context); 
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Compromisso()),
+                );
+              },
+            ),
+            
           ],
-          currentIndex: _selectedIndex,
-          selectedItemColor: Color.fromARGB(255, 221, 156, 232),
-          unselectedItemColor: const Color.fromARGB(255, 221, 156, 232),
-          backgroundColor: Colors.grey[800],
-          onTap: _onItemTapped,
         ),
       ),
-    );
-  }
+      body: _widgetOptions.elementAt(_selectedIndex),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Perfil',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.notifications),
+            label: 'Notificações',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Color.fromARGB(255, 221, 156, 232),
+        unselectedItemColor: const Color.fromARGB(255, 221, 156, 232),
+        backgroundColor: Colors.grey[800],
+        onTap: _onItemTapped,
+      ),
+    ),
+  );
+}
 }
 
 class Compromissos extends StatelessWidget {
@@ -89,37 +179,7 @@ class Compromissos extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              Wrap(
-                spacing: 20.0,
-                runSpacing: 20.0,
-                children: List.generate(itemNames.length, (index) {
-                  return Column(
-                    children: [
-                      Container(
-                        width: 100,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Color.fromARGB(255, 210, 85, 195),
-                        ),
-                        child: ClipOval(
-                          child: Image.asset(
-                            'assets/images/item$index.jpg', 
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 5),
-                      Text(
-                        itemNames[index],
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 221, 156, 232),
-                        ),
-                      ),
-                    ],
-                  );
-                }),
-              ),
+              
               const SizedBox(height: 20),
               Text(
                 'Agenda de Compromissos',

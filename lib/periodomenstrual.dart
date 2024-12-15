@@ -1,16 +1,22 @@
+import 'compromissos.dart';
+import 'periodomenstrual.dart';
+import 'saude.dart';
+import 'unhas.dart';
 import 'package:flutter/material.dart';
 import 'perfil.dart';
+import 'cabelos.dart';
+import 'beleza.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(periodomenstrual());
 }
 
-class MyApp extends StatefulWidget {
+class periodomenstrual extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _MyAppState extends State<periodomenstrual> {
   int _selectedIndex = 0;
 
   static List<Widget> _widgetOptions = <Widget>[
@@ -28,9 +34,93 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Bem estar em Mãos - Período Menstrual',
+      title: 'Bem Estar em Mãos - Período Menstrual',
       home: Scaffold(
         backgroundColor: const Color.fromRGBO(255, 241, 241, 1),
+        appBar: AppBar(
+          title: Text('Bem Estar em Mãos'),
+          backgroundColor: Color.fromARGB(255, 221, 156, 232),
+        ),
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 221, 156, 232),
+                ),
+                child: Text(
+                  'Menu',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                  ),
+                ),
+              ),
+              ListTile(
+              title: Text('Cabelos'),
+              onTap: () {
+                Navigator.pop(context); 
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyApp()),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Beleza'),
+              onTap: () {
+                Navigator.pop(context); 
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Beleza()),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Período Menstrual'),
+              onTap: () {
+                Navigator.pop(context); 
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => periodomenstrual()),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Saúde'),
+              onTap: () {
+                Navigator.pop(context); 
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => saudes()),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Unhas'),
+              onTap: () {
+                Navigator.pop(context); 
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Unha()),
+                );
+              },
+            ),
+             ListTile(
+              title: Text('Compromisso'),
+              onTap: () {
+                Navigator.pop(context); 
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Compromisso()),
+                );
+              },
+            ),
+            
+          ],
+        ),
+      ),
         body: _widgetOptions.elementAt(_selectedIndex),
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
@@ -57,6 +147,7 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
+
 
 class Periodomenstrual extends StatelessWidget {
   final List<String> itemNames = [
@@ -93,41 +184,7 @@ class Periodomenstrual extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              Wrap(
-                spacing: 20.0,
-                runSpacing: 20.0,
-                children: List.generate(itemNames.length, (index) {
-                  return GestureDetector(
-                    onTap: () {
-                     
-                    },
-                    child: Column(
-                      children: [
-                        ClipOval(
-                          child: Container(
-                            width: 100,
-                            height: 100,
-                            decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 221, 156, 232),
-                            ),
-                            child: Image.asset(
-                              'assets/images/item$index.jpg',
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 5),
-                        Text(
-                          itemNames[index],
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 221, 156, 232),
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                }),
-              ),
+              
               const SizedBox(height: 20),
               GestureDetector(
                 onTap: () {
@@ -354,6 +411,26 @@ class ReconstrucaoDetailPage extends StatelessWidget {
 class NotificationsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text('Página de Notificações'));
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Notificações'),
+        backgroundColor: Color.fromARGB(255, 221, 156, 232),
+      ),
+      body: ListView(
+        padding: EdgeInsets.all(20),
+        children: [
+          ListTile(
+            leading: Icon(Icons.notifications, color: Color.fromARGB(255, 210, 85, 195)),
+            title: Text("Lembrete 1"),
+            subtitle: Text("Você tem um compromisso às 10:00 AM."),
+          ),
+          ListTile(
+            leading: Icon(Icons.notifications, color: Color.fromARGB(255, 210, 85, 195)),
+            title: Text("Lembrete 2"),
+            subtitle: Text("Horário de tomar remédio às 2:00 PM."),
+          ),
+        ],
+      ),
+    );
   }
 }

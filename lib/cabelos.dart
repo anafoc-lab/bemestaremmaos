@@ -1,10 +1,12 @@
-import 'package:bemestaremmaos/beleza.dart';
-import 'package:bemestaremmaos/compromissos.dart';
-import 'package:bemestaremmaos/periodomenstrual.dart';
-import 'package:bemestaremmaos/saude.dart';
-import 'package:bemestaremmaos/unhas.dart';
+import 'compromissos.dart';
+import 'periodomenstrual.dart';
+import 'saude.dart';
+import 'unhas.dart';
 import 'package:flutter/material.dart';
 import 'perfil.dart';
+import 'cabelos.dart';
+import 'beleza.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -31,35 +33,120 @@ class _MyAppState extends State<MyApp> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Bem estar em Mãos - Cabelos',
-      home: Scaffold(
-        backgroundColor: const Color.fromRGBO(255, 241, 241, 1),
-        body: _widgetOptions.elementAt(_selectedIndex),
-        bottomNavigationBar: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
+Widget build(BuildContext context) {
+  return MaterialApp(
+    title: 'Bem estar em Mãos - Cabelos',
+    home: Scaffold(
+      backgroundColor: const Color.fromRGBO(255, 241, 241, 1),
+      appBar: AppBar(
+        title: Text('Bem Estar em Mãos'),
+        backgroundColor: Color.fromARGB(255, 221, 156, 232),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 221, 156, 232),
+              ),
+              child: Text(
+                'Menu',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: 'Perfil',
+           ListTile(
+              title: Text('Cabelos'),
+              onTap: () {
+                Navigator.pop(context); 
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyApp()),
+                );
+              },
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.notifications),
-              label: 'Notificações',
+            ListTile(
+              title: Text('Beleza'),
+              onTap: () {
+                Navigator.pop(context); 
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Beleza()),
+                );
+              },
             ),
+            ListTile(
+              title: Text('Período Menstrual'),
+              onTap: () {
+                Navigator.pop(context); 
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => periodomenstrual()),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Saúde'),
+              onTap: () {
+                Navigator.pop(context); 
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => saudes()),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Unhas'),
+              onTap: () {
+                Navigator.pop(context); 
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Unha()),
+                );
+              },
+            ),
+             ListTile(
+              title: Text('Compromisso'),
+              onTap: () {
+                Navigator.pop(context); 
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Compromisso()),
+                );
+              },
+            ),
+            
           ],
-          currentIndex: _selectedIndex,
-          selectedItemColor: Color.fromARGB(255, 221, 156, 232),
-          unselectedItemColor: Colors.grey,
-          onTap: _onItemTapped,
         ),
       ),
-    );
-  }
+      body: _widgetOptions.elementAt(_selectedIndex),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Perfil',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.notifications),
+            label: 'Notificações',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Color.fromARGB(255, 221, 156, 232),
+        unselectedItemColor: const Color.fromARGB(255, 221, 156, 232),
+        backgroundColor: Colors.grey[800],
+        onTap: _onItemTapped,
+      ),
+    ),
+  );
+}
 }
 
 class Cabelos extends StatelessWidget {
@@ -97,80 +184,7 @@ class Cabelos extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              Wrap(
-                spacing: 20.0,
-                runSpacing: 20.0,
-                children: List.generate(itemNames.length, (index) {
-                  return GestureDetector(
-                    onTap: () {
-                     switch (itemNames[index]) {
-                        case 'Cabelos':
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Cabelos()),
-                          );
-                          break;
-                        case 'Beleza':
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Beleza()),
-                          );
-                          break;
-                        case 'Período Menstrual':
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Periodomenstrual()),
-                          );
-                          break;
-                        case 'Saúde':
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Saude()),
-                          );
-                          break;
-                        case 'Unhas':
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Unhas()),
-                          );
-                          break;
-                        case 'Compromissos':
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Compromissos()),
-                          );
-                          break;
-                        default:
-                          break;
-                      }
-                    },
-                    child: Column(
-                      children: [
-                        ClipOval(
-                          child: Container(
-                            width: 100,
-                            height: 100,
-                            decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 221, 156, 232),
-                            ),
-                            child: Image.asset(
-                              'assets/images/item$index.jpg',
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 5),
-                        Text(
-                          itemNames[index],
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 221, 156, 232),
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                }),
-              ),
+            
               const SizedBox(height: 20),
               GestureDetector(
                 onTap: () {
@@ -354,10 +368,6 @@ class DetailPage extends StatelessWidget {
 'Ajuda a evitar o ressecamento e a quebra.'
 'Melhora a elasticidade dos fios.'
 
-'\n\nComo Fazer:\n'
-'Escolha do Produto: Use máscaras de hidratação que contenham ingredientes como aloe vera, glicerina, pantenol, e extratos de frutas.'
-'Frequência: Pode ser feita uma ou duas vezes por semana, dependendo do tipo de cabelo e das necessidades específicas.'
-
 '\n\nAplicação:\n'
 'Lave o cabelo com shampoo e enxágue bem.'
 'Aplique a máscara nos cabelos ainda úmidos, distribuindo uniformemente do comprimento às pontas.'
@@ -394,10 +404,6 @@ class ReconstrucaoDetailPage extends StatelessWidget {
 'Restaura a força e a integridade dos fios danificados.'
 'É essencial para cabelos quimicamente tratados (como alisamentos, tinturas, etc.).'
 
-'\n\nComo Fazer:\n'
-'Escolha do Produto: Utilize máscaras reconstrutoras que contenham proteínas como queratina, colágeno, ou aminoácidos.'
-'Frequência: Deve ser feita a cada 15 dias ou uma vez por mês, dependendo do nível de dano do cabelo.'
-
 '\n\nAplicação:\n'
 'Lave o cabelo com shampoo e enxágue.'
 'Aplique a máscara reconstrutora nos fios úmidos, concentrando-se nas áreas mais danificadas.'
@@ -419,6 +425,26 @@ class ReconstrucaoDetailPage extends StatelessWidget {
 class NotificationsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text('Página de Notificações'));
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Notificações'),
+        backgroundColor: Color.fromARGB(255, 221, 156, 232),
+      ),
+      body: ListView(
+        padding: EdgeInsets.all(20),
+        children: [
+          ListTile(
+            leading: Icon(Icons.notifications, color: Color.fromARGB(255, 210, 85, 195)),
+            title: Text("Lembrete 1"),
+            subtitle: Text("Você tem um compromisso às 10:00 AM."),
+          ),
+          ListTile(
+            leading: Icon(Icons.notifications, color: Color.fromARGB(255, 210, 85, 195)),
+            title: Text("Lembrete 2"),
+            subtitle: Text("Horário de tomar remédio às 2:00 PM."),
+          ),
+        ],
+      ),
+    );
   }
 }
